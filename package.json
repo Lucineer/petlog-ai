@@ -1,0 +1,15 @@
+{
+  "name": "petlog-ai",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "wrangler deploy --dry-run"
+  },
+  "devDependencies": {
+    "wrangler": "^3.99.0",
+    "typescript": "^5.5.0",
+    "@cloudflare/workers-types": "^4.20241127.0"
+  }
+}
