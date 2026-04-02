@@ -49,3 +49,7 @@ npm run deploy
 - Cloudflare Workers (TypeScript)
 - DeepSeek AI (streaming SSE)
 - Single-page HTML UI (no framework, no build step)
+
+## License
+
+MIT — Built with ❤️ by [Superinstance](https://github.com/superinstance) & [Lucineer](https://github.com/Lucineer) (DiGennaro et al.)
