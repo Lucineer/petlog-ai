@@ -178,9 +178,7 @@ export default {
 
     // Serve static HTML
     if (path === "/" || path === "/index.html") {
-      return env.ASSETS
-        ? new Response(null, { status: 404 })
-        : fetch(new URL("/app.html", request.url));
+      return new Response('<h1 style="font-family:monospace;color:#7c6aef">petlog</h1><p>Pet Health & Activity Tracker</p>', { headers: { 'Content-Type': 'text/html' } });
     }
 
     return new Response("Not found", { status: 404 });
