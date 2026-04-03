@@ -240,7 +240,7 @@ export default {
         const userId = await getUserId(request, env);
         const data = await request.json();
         const item = await createItem(env, userId, data);
-        return Response.json({ : item }, { status: 201 });
+        return Response.json({ item: item }, { status: 201 });
       }
 
       // Domain CRUD: GET /api/pets/:id
@@ -251,12 +251,12 @@ export default {
 
         if (request.method === 'GET') {
           const item = await getItem(env, userId, id);
-          return item ? Response.json({ : item }) : Response.json({ error: 'Not found' }, { status: 404 });
+          return item ? Response.json({ item: item }) : Response.json({ error: 'Not found' }, { status: 404 });
         }
         if (request.method === 'PATCH') {
           const data = await request.json();
           const item = await updateItem(env, userId, id, data);
-          return item ? Response.json({ : item }) : Response.json({ error: 'Not found' }, { status: 404 });
+          return item ? Response.json({ item: item }) : Response.json({ error: 'Not found' }, { status: 404 });
         }
         if (request.method === 'DELETE') {
           const deleted = await deleteItem(env, userId, id);
