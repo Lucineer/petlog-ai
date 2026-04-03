@@ -3,6 +3,9 @@
 import { loadBYOKConfig, callLLM, saveBYOKConfig, generateSetupHTML, type BYOKConfig, type LLMMessage } from './lib/byok.ts';
 import { softActualize, confidenceScore } from './lib/soft-actualize.ts';
 
+import { storePattern, findSimilar, getNeighborhood, crossRepoTransfer, listPatterns } from './lib/structural-memory.js';
+import { exportPatterns, importPatterns, fleetSync } from './lib/cross-cocapn-bridge.js';
+
 export interface Env {
   MEMORY: KVNamespace;
   AGENT_NAME?: string;
@@ -245,6 +248,37 @@ export default {
       }
     }
 
+    
+    // ── Phase 4: Structural Memory Routes ──
+    if (url.pathname === '/api/memory' && request.method === 'GET') {
+      const source = url.searchParams.get('source') || undefined;
+      const patterns = await listPatterns(env, source);
+      return Response.json(patterns);
+    }
+    if (url.pathname === '/api/memory' && request.method === 'POST') {
+      const body = await request.json();
+      await storePattern(env, body);
+      return Response.json({ ok: true, id: body.id });
+    }
+    if (url.pathname === '/api/memory/similar') {
+      const structure = url.searchParams.get('structure') || '';
+      const threshold = parseFloat(url.searchParams.get('threshold') || '0.7');
+      const similar = await findSimilar(env, structure, threshold);
+      return Response.json(similar);
+    }
+    if (url.pathname === '/api/memory/transfer') {
+      const fromRepo = url.searchParams.get('from') || '';
+      const toRepo = url.searchParams.get('to') || '';
+      const problem = url.searchParams.get('problem') || '';
+      const transfers = await crossRepoTransfer(env, fromRepo, toRepo, problem);
+      return Response.json(transfers);
+    }
+    if (url.pathname === '/api/memory/sync' && request.method === 'POST') {
+      const body = await request.json();
+      const repos = body.repos || [];
+      const result = await fleetSync(env, repos);
+      return Response.json(result);
+    }
     return Response.json({ error: 'Not found' }, { status: 404 });
   },
 };
