@@ -1,3 +1,4 @@
+account_id = "2bd99d5b13b2186382cd3dc995b0bb18"
 name = "petlog-ai"
 main = "src/index.ts"
 compatibility_date = "2024-12-01"
@@ -7,3 +8,7 @@ bucket = "./public"
 
 [vars]
 DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions"
+
+[[kv_namespaces]]
+binding = "PETLOG_KV"
+id = "e78e3bde4c8f485badeff0feac76a5fd"
