@@ -170,6 +170,12 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
 
+    if (path === "/health") {
+      return new Response(JSON.stringify({ status: "ok", repo: "petlog-ai", timestamp: Date.now() }), {
+        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+      });
+    }
+
     // API routes
     if (path.startsWith("/api/")) {
       if (path === "/api/chat" && request.method === "POST") {
