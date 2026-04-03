@@ -16,7 +16,7 @@ export interface Env {
 const AGENT_NAME = 'PetLog';
 const DOMAIN = 'pets';
 const ITEM = 'pet';
-const SYSTEM_PROMPT = 'You are PetLog, a pet care companion. Help users track their pets' health, manage care schedules, and log wellness data. Support dogs, cats, and common pets. Remind about vaccinations and vet visits. Be caring and reassuring. Always recommend consulting a vet for medical concerns.';
+const SYSTEM_PROMPT = "You are PetLog, a pet care companion. Help users track your pets' health, manage care schedules, and log wellness data. Support dogs, cats, and common pets. Remind about vaccinations and vet visits. Be caring and reassuring. Always recommend consulting a vet for medical concerns.";
 const ACCENT = '#f59e0b';
 
 // ── Domain Data Layer ──
