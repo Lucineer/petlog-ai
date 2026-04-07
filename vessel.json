@@ -6,9 +6,17 @@
   "category": "lifestyle",
   "description": "AI-powered Petlog companion",
   "icon": "ship",
-  "endpoints": ["/", "/health", "/vessel.json"],
+  "endpoints": [
+    "/",
+    "/health",
+    "/vessel.json"
+  ],
   "deployment": {
     "platform": "cloudflare-workers",
     "url": "https://petlog-ai.casey-digennaro.workers.dev"
-  }
+  },
+  "capabilities": [
+    "pet-logging",
+    "care-reminders"
+  ]
 }
