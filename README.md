@@ -4,108 +4,69 @@
 
 <h1 align="center">petlog-ai</h1>
 
-<p align="center">Pet care companion vessel.</p>
+<p align="center">A local-first companion for pet health records and care.</p>
 
 <p align="center">
   <a href="#quick-start">Quick Start</a> ·
   <a href="#features">Features</a> ·
-  <a href="#the-fleet">The Fleet</a> ·
+  <a href="#limitations">Limitations</a> ·
+  <a href="https://petlog-ai.casey-digennaro.workers.dev">Live Demo</a> ·
   <a href="https://github.com/Lucineer/petlog-ai/issues">Issues</a>
 </p>
 
 ---
 
-**Powered by [Capitaine](https://github.com/Lucineer/capitaine) · [Cocapn](https://github.com/Lucineer/cocapn)**
+You forget the rabies booster date. You stand in the pet store staring at 17 bags of food trying to remember what the vet recommended last visit. They ask for medical history and you are scrolling 18 months of camera roll screenshots.
 
-The repo IS the agent. petlog-ai is a cocapn vessel — a self-improving repository that runs on Cloudflare Workers, thinks with LLMs, and coordinates with the fleet through git.
+This is a private companion vessel that lives in your fork, runs on your infrastructure, and organizes the details for the animals you care for.
+
+No account walls. No data mining. No subscription. You never have to send your pet's details to a random startup server.
+
+## Why this exists
+Most pet care tools are built for venture exit. They lock your data, kill features when funding runs out, and disappear. This one was built for people with pets:
+- It is an agent, not just a form. It can notice patterns in your entries.
+- It lives only where you put it.
+- It can receive optional updates from the fleet, but you control them.
+- It will still work in 10 years, exactly as you left it.
 
 ## Quick Start
+Fork first. This vessel is designed to be owned.
 
 ```bash
-# Fork and deploy
 gh repo fork Lucineer/petlog-ai --clone
 cd petlog-ai
 npx wrangler login
-echo "your-github-token" | npx wrangler secret put GITHUB_TOKEN
-echo "your-llm-key" | npx wrangler secret put DEEPSEEK_API_KEY
 npx wrangler deploy
 ```
-
-That's it. The vessel is alive.
+Add your LLM API key via Cloudflare Secrets (BYOK v2). The vessel is alive.
 
 ## Features
-
-- **BYOK v2** — Zero keys in code. All API keys via Cloudflare Secrets Store.
-- **Multi-model** — DeepSeek, SiliconFlow, DeepInfra, Moonshot, z.ai, local models.
-- **Session memory** — Conversations persist and build context over time.
-- **PII safety** — Automatic detection and dehydration of sensitive data.
-- **Rate limiting** — Guest tokens per IP with configurable limits.
-- **Health checks** — Standard `/health` endpoint on all vessels.
-- **Fleet coordination** — CRP-39 protocol for trust, bonds, and events.
+- **Timestamped health records** with attached notes.
+- **Feeding schedules** that adjust for age and weight.
+- **Vet appointment reminders** with pre-visit checklists.
+- **Contextual care advice** that references your pet's history.
+- **Vessel standard**: BYOK v2, multi-model routing, session memory, PII safety, rate limiting, health checks.
 
 ## Architecture
-
-Single-file Cloudflare Worker. Zero runtime dependencies. Inline HTML serving.
-
+Single-file Cloudflare Worker. Zero runtime dependencies. Inline HTML serving. Runs at the edge.
 ```
 src/
-  worker.ts      # The hull — serves users, runs heartbeats
+  worker.ts      # Main application logic and routing
 lib/
   byok.ts        # Multi-model routing (BYOK v2)
-  ...
 ```
 
+## Limitations
+This is a foundational agent. It does not have native mobile notifications or direct calendar sync; you manage updates through the web interface or API.
+
 ## The Fleet
+petlog-ai is part of the Cocapn Fleet—a network of autonomous vessels that share trust and updates. Your fork can optionally bond with the fleet to receive non-breaking improvements while maintaining full control and ownership.
 
-petlog-ai is one of 40+ autonomous vessels in the Lucineer fleet. Each vessel is a different domain of one intelligence.
-
-
-<details>
-<summary><strong>⚓ The Fleet</strong></summary>
-
-**Flagship vessels**
-
-- [cocapn.ai](https://github.com/Lucineer/capitaine)
-- [personallog.ai](https://github.com/Lucineer/personallog-ai)
-- [businesslog.ai](https://github.com/Lucineer/businesslog-ai)
-- [studylog.ai](https://github.com/Lucineer/studylog-ai)
-- [makerlog.ai](https://github.com/Lucineer/makerlog-ai)
-- [playerlog.ai](https://github.com/Lucineer/playerlog-ai)
-- [dmlog.ai](https://github.com/Lucineer/dmlog-ai)
-- [reallog.ai](https://github.com/Lucineer/reallog-ai)
-- [deckboss.ai](https://github.com/Lucineer/deckboss-ai)
-
-**Fleet services**
-
-- [Fleet Catalog](https://github.com/Lucineer/capitaine/blob/master/docs/fleet/FLEET.md)
-- [Git Agent (full)](https://github.com/Lucineer/git-agent)
-- [Cocapn Lite (minimal)](https://github.com/Lucineer/cocapn-lite)
-- [Fleet Orchestrator](https://github.com/Lucineer/fleet-orchestrator)
-- [Dead Reckoning Engine](https://github.com/Lucineer/dead-reckoning-engine)
-- [Dream Engine](https://github.com/Lucineer/dream-engine)
-- [Seed UI (5 layers)](https://github.com/Lucineer/seed-ui)
-
-**For power users**
-
-- [Cocapn Lite (tabula rasa)](https://github.com/Lucineer/cocapn-lite)
-- [Cocapn (core platform)](https://github.com/Lucineer/cocapn)
-- [ZeroClaw (framework)](https://github.com/Lucineer/zeroclaw)
-
-[View all 106 repos →](https://github.com/orgs/Lucineer/repositories)
-[Fleet manifest →](https://github.com/Lucineer/capitaine/blob/master/docs/fleet/FLEET.md)
-
-</details>
-
-
-## Philosophy
-
-> The repo is the agent. The agent is the repo. Intelligence crystallizes from fluid (LLM calls) to solid (code). The vessel becomes faster and cheaper as it becomes smarter.
-
-- **Fork-first** — Power users fork and customize. Casual users visit the domain.
-- **Pay-for-convenience** — We save you costs through bulk inference, not markups.
-- **Git as coordination** — Agents compete via PRs, not chat.
-- **Soft actualization** — Vessels evolve gently based on usage, not hard updates.
-
-## License
-
-MIT · Superinstance & Lucineer (DiGennaro et al.)
+<div align="center">
+  <hr>
+  <p>
+    Part of the <a href="https://the-fleet.casey-digennaro.workers.dev">Cocapn Fleet</a> · 
+    <a href="https://cocapn.ai">Protocol Home</a> · 
+    Attribution: Superinstance & Lucineer (DiGennaro et al.)
+  </p>
+</div>
