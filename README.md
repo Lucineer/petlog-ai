@@ -38,3 +38,9 @@ To keep responses fast and relevant, the AI context window includes your pet's *
 MIT. Use it, change it, share it. The only request is that you don't use it to lock others out of their own data.
 
 <div style="text-align:center;padding:16px;color:#64748b;font-size:.8rem"><a href="https://the-fleet.casey-digennaro.workers.dev" style="color:#64748b">The Fleet</a> &middot; <a href="https://cocapn.ai" style="color:#64748b">Cocapn</a></div>
+
+---
+
+<i>Built with [Cocapn](https://github.com/Lucineer/cocapn-ai) — the open-source agent runtime.</i>
+<i>Part of the [Lucineer fleet](https://github.com/Lucineer)</i>
+
